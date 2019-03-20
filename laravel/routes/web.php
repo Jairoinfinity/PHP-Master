@@ -15,6 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get("/peliculas/{pagina?}", "PeliculaController@index");
+
+Route::get("/detalle/{year?}", [
+    "middleware" => "testyear",
+    "uses" => "PeliculaController@detalle"
+    ]);
+
+Route::get("/redirigir", "PeliculaController@redirigir");
+
+Route::get("/formulario", "PeliculaController@formulario");
+
+Route::post("/recibir", "PeliculaController@recibir");
+
+Route::resource("/usuario", "UsuarioController");
+
+/*
 Route::get("/fecha", function(){
     $titulo = "Fecha";
     return view("fecha", array(
@@ -41,4 +57,4 @@ Route::get("/listado", function(){
 
 Route::get("/pagina-generica", function(){
     return view("pagina");
-});
+});*/
